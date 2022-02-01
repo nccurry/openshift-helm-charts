@@ -1,0 +1,8 @@
+# The container image and tag to use
+imageUri: registry.redhat.io/rhel8/httpd-24:latest
+
+# The size of the /var/www volume
+wwwPvcSize: 3Gi
+
+# The size of the /var/log/httpd volume
+logPvcSize: 3Gi

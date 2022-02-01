@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "name" . }}
+  namespace: {{ Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: mysql
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/created-by: helm
+spec:
+  selector:
+    matchLabels:
+      app: httpd
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+      - name: httpd
+        image: {{ .Values.imageUri }}
+        ports:
+        - name: http
+          containerPort: 8080
+        - name: https
+          containerPort: 8443
+        volumeMounts:
+        - name: www
+          mountPath: /var/www
+        - name: log
+          mountPath: /var/log/httpd
+        - name: webpage
+          mountPath: /var/www/html
+          readOnly: true
+      volumes:
+      - name: www
+        persistentVolumeClaim:
+          claimName: {{ template "name" . }}-www
+      - name: log
+        persistentVolumeClaim:
+          claimName: {{ template "name" . }}-log
+      - name: webpage
+        configMap:
+          name: {{ template "name" . }}
+          items:
+          - key: index.html
+            path: index.html
+
+
