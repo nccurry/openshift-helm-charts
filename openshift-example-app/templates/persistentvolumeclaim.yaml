@@ -2,10 +2,10 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ template "name" . }}-www
-  namespace: {{ Release.Namespace }}
+  name: {{ .Release.Name }}-www
+  namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: mysql
+    app.kubernetes.io/name: {{ .Chart.Name }}
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/version: {{ .Chart.AppVersion }}
@@ -22,10 +22,11 @@ spec:
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
-  name: {{ template "name" . }}-log
-  namespace: {{ Release.Namespace }}
+metadata:
+  name: {{ .Release.Name }}-log
+  namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: mysql
+    app.kubernetes.io/name: {{ .Chart.Name }}
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/version: {{ .Chart.AppVersion }}

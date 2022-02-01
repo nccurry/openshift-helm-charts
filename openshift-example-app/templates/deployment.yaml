@@ -1,10 +1,11 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "name" . }}
-  namespace: {{ Release.Namespace }}
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: mysql
+    app.kubernetes.io/name: {{ .Chart.Name }}
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/version: {{ .Chart.AppVersion }}
@@ -41,15 +42,13 @@ spec:
       volumes:
       - name: www
         persistentVolumeClaim:
-          claimName: {{ template "name" . }}-www
+          claimName: {{ .Release.Name }}-www
       - name: log
         persistentVolumeClaim:
-          claimName: {{ template "name" . }}-log
+          claimName: {{ .Release.Name }}-log
       - name: webpage
         configMap:
-          name: {{ template "name" . }}
+          name: {{ .Release.Name }}
           items:
           - key: index.html
             path: index.html
-
-
