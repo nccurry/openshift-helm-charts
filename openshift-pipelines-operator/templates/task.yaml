@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: echo-hello-world
+  namespace: default
+spec:
+  steps:
+  - name: echo
+    image: registry.access.redhat.com/ubi8/ubi-minimal:latest
+    command:
+    - echo
+    args:
+    - "Hello World"

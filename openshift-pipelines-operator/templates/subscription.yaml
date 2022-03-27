@@ -1,0 +1,17 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/openshift-pipelines-operator-rh.openshift-operators: ''
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+  name: openshift-pipelines-operator
+  namespace: {{ .Values.namespace }}
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: openshift-pipelines-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: {{ .Values.startingCsv }}
