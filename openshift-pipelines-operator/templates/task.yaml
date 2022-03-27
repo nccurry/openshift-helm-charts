@@ -5,7 +5,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "20"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   name: echo-hello-world
-  namespace: default
+  namespace: {{ .Values.namespace }}
 spec:
   steps:
   - name: echo
