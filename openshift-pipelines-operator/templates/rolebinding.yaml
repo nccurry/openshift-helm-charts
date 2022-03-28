@@ -8,7 +8,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "15"
 subjects:
 - kind: ServiceAccount
-  name: system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller
+  name: openshift-gitops-argocd-application-controller
   namespace: openshift-gitops
 roleRef:
   apiGroup: rbac.authorization.k8s.io
