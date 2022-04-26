@@ -15,7 +15,7 @@ home: https://github.com/nccurry/openshift-helm-charts
 sources:
 - https://github.com/nccurry/openshift-helm-charts
 dependencies: []
-maintainers: # (optional)
+maintainers:
   - name: Nick Curry
     email: code@nickcurry.com
     url: https://nickcurry.com

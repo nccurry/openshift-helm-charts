@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openshift-example-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+spec:
+  project: default
+  source:
+    path: openshift-example-app
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    targetRevision: HEAD
+    helm:
+      parameters:
+      - name: wwwPvcSize
+        value: 4Gi
+      - name: logPvcSize
+        value: 4Gi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openshift-example-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: '30'
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+      - CreateNamespace=true
