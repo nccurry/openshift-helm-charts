@@ -11,7 +11,3 @@ tolerations: {}
 #  - key: infra
 #    value: reserved
 #    effect: NoExecute
-customRoutes:
-  enabled: false
-  routes: []
-  secrets: []
