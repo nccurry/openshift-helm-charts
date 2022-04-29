@@ -1,0 +1,17 @@
+defaultRoute: true
+logLevel: Normal
+managementState: Managed
+replicaCount: 1
+nodeSelector: {}
+#  node-role.kubernetes.io/infra: ""
+tolerations: {}
+#  - key: infra
+#    value: reserved
+#    effect: NoSchedule
+#  - key: infra
+#    value: reserved
+#    effect: NoExecute
+customRoutes:
+  enabled: false
+  routes: []
+  secrets: []

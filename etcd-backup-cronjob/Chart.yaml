@@ -1,13 +1,12 @@
 apiVersion: v2
-name: openshift-monitoring
+name: etcd-backup-cronjob
 version: 1.0.0
 kubeVersion: ">= 1.13.0"
-description: Configuraiton for the OpenShift monitoring stack
+description: Install a CronJob to backup etcd
 type: application
 keywords:
 - openshift
-- prometheus
-- alertmanager
+- etcd
 home: https://github.com/nccurry/openshift-helm-charts
 sources:
 - https://github.com/nccurry/openshift-helm-charts

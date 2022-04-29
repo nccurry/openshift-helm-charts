@@ -1,0 +1,103 @@
+kind: CronJob
+apiVersion: batch/v1beta1
+metadata:
+  name: etcd-backup
+spec:
+  schedule: {{ .Values.schedule }}
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 5
+  concurrencyPolicy: Forbid
+  suspend: false
+  jobTemplate:
+    metadata:
+      labels:
+        app: etcd-backup
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            app: etcd-backup
+        spec:
+          nodeSelector:
+            node-role.kubernetes.io/master: ''
+          tolerations:
+          - key: node-role.kubernetes.io/master
+          restartPolicy: Never
+          activeDeadlineSeconds: 500
+          serviceAccountName: etcd-backup
+          hostPID: true
+          hostNetwork: true
+          terminationGracePeriodSeconds: 30
+          containers:
+          - resources: {}
+            terminationMessagePath: /dev/termination-log
+            name: backup
+            command:
+              - /bin/bash
+              - '-c'
+              - >-
+                echo -e '\n\n---\ncreate etcd backup local to master\n' &&
+                chroot /host /usr/local/bin/cluster-backup.sh
+                /home/core/backup/ && echo -e '\n\n---\ncleanup old local etcd
+                backups\n' && chroot /host find /home/core/backup/ -type f
+                -mmin +"2" -delete && echo -e '\n\n---\ncopy etcd backup to
+                persistent volume\n' && mkdir -pv /mnt/backup/$(date
+                "+%F_%H%M%S") && cp -v /host/home/core/backup/*
+                /mnt/backup/$(date "+%F_%H%M%S") && echo -e "\n\n---\nDelete
+                persistent ETCD backups older then
+                ${DAYS_TO_KEEP_PERSISTENT_ETCD_BACKUPS} days\n" && find
+                /mnt/backup/* -type d -mtime
+                +${DAYS_TO_KEEP_PERSISTENT_ETCD_BACKUPS} -exec rm -rv {} \; &&
+                echo -e '\n\n---\nList all etc backups\n' && ls -al
+                /mnt/backup/*
+            env:
+              - name: DAYS_TO_KEEP_PERSISTENT_ETCD_BACKUPS
+                value: '5'
+            securityContext:
+              capabilities:
+                add:
+                  - SYS_CHROOT
+            imagePullPolicy: Always
+            volumeMounts:
+              - name: backup
+                mountPath: /mnt/backup
+              - name: host
+                mountPath: /host
+              - name: kube-api-access
+                readOnly: true
+                mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            terminationMessagePolicy: File
+            image: registry.redhat.io/openshift4/ose-cli
+          volumes:
+          - name: backup
+            persistentVolumeClaim:
+              claimName: etcd-backups
+          - name: host
+            hostPath:
+              path: /
+              type: Directory
+          - name: kube-api-access
+            projected:
+              sources:
+                - serviceAccountToken:
+                    expirationSeconds: 3607
+                    path: token
+                - configMap:
+                    name: kube-root-ca.crt
+                    items:
+                      - key: ca.crt
+                        path: ca.crt
+                - downwardAPI:
+                    items:
+                      - path: namespace
+                        fieldRef:
+                          apiVersion: v1
+                          fieldPath: metadata.namespace
+                - configMap:
+                    name: openshift-service-ca.crt
+                    items:
+                      - key: service-ca.crt
+                        path: service-ca.crt
+              defaultMode: 420
+          dnsPolicy: ClusterFirst

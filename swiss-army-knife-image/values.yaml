@@ -1,0 +1,3 @@
+baseImage: "registry.access.redhat.com/ubi8/ubi-minimal:latest"
+spaceSeparatedYumPackages: "jq nmap-ncat bind-utils iputils net-tools python3-pip openssl"
+spaceSeparatedPipPackages: "awscli openshift"

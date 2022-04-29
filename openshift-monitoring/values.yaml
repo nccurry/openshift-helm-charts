@@ -1,19 +1,19 @@
 alertmanager:
-  storageClassName: gp2
+  storageClassName: thin
   storage: 3Gi
 
 prometheusK8s:
-  retention: 90d
-  storageClassName: gp2
-  storage: 150Gi
+  retention: 7d
+  storageClassName: thin
+  storage: 20Gi
 
-nodeSelector:
-  node-role.kubernetes.io/infra: ""
+nodeSelector: {}
+#  node-role.kubernetes.io/infra: ""
 
-tolerations:
-  - key: infra
-    value: reserved
-    effect: NoExecute
-  - key: infra
-    value: reserved
-    effect: NoSchedule
+tolerations: {}
+#- key: infra
+#  value: reserved
+#  effect: NoExecute
+#- key: infra
+#  value: reserved
+#  effect: NoSchedule

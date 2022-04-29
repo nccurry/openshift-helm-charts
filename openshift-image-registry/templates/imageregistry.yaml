@@ -1,0 +1,25 @@
+apiVersion: imageregistry.operator.openshift.io/v1
+kind: Config
+metadata:
+  name: cluster
+spec:
+  {{- if .Values.defaultRoute }}
+  defaultRoute: {{ .Values.defaultRoute }}
+  {{- end }}
+  {{- if .Values.logLevel }}
+  logLevel: {{ .Values.logLevel }}
+  {{- end }}
+  managementState: {{ .Values.managementState }}
+  {{- if .Values.nodeSelector }}
+  nodeSelector:
+    {{ toYaml .Values.nodeSelector }}
+  {{- end }}
+  replicas: {{ .Values.replicaCount }}
+  {{- if .Values.customRoutes.enabled }}
+  routes:
+    {{- toYaml .Values.customRoutes.routes | nindent 2 }}
+  {{- end }}
+  {{- if .Values.tolerations }}
+  tolerations:
+    {{- toYaml .Values.tolerations | trim | nindent 2 }}
+  {{- end }}
