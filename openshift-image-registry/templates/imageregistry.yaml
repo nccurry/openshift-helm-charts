@@ -16,4 +16,4 @@ spec:
   {{- end }}
   storage:
     pvc:
-      claim: {{- if .Values.persistentVolumeClaim.deploy -}}image-registry-storage{{- end }}
+      claim: {{- if .Values.persistentVolumeClaim.deploy -}}image-registry-storage{{ else }}''{{- end }}
