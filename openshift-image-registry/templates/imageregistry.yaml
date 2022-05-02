@@ -10,7 +10,6 @@ spec:
     {{ toYaml .Values.nodeSelector }}
   {{- end }}
   replicas: {{ .Values.replicas }}
-  replicas: {{ .Values.replicaCount }}
   {{- if .Values.tolerations }}
   tolerations:
     {{- toYaml .Values.tolerations | trim | nindent 2 }}
