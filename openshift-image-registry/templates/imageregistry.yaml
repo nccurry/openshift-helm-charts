@@ -9,7 +9,7 @@ spec:
   nodeSelector:
     {{ toYaml .Values.nodeSelector }}
   {{- end }}
-  replicas: {{ .Values.replicas | quote }}
+  replicas: {{ .Values.replicas }}
   {{- if .Values.tolerations }}
   tolerations:
     {{- toYaml .Values.tolerations | trim | nindent 2 }}
