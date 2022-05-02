@@ -203,8 +203,8 @@ openshift_image_registry:
       backoff:
         duration: 10s
         factor: 2
-        maxDuration: 12h
-      limit: 10
+        maxDuration: 30m
+      limit: 3
     syncOptions:
     - CreateNamespace=true
 
