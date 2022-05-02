@@ -34,9 +34,4 @@ syncPolicy:
   - CreateNamespace=true
 
 # Grant openshift-gitops-argocd-application-controller cluster-admin
-clusterAdminClusterRoleBinding: false
-
-# Grant individual namespace rolebindings
-adminRoleBindingNamespaceList:
-- openshift-example-app
-- swiss-army-knife-image
+clusterAdminClusterRoleBinding: true
