@@ -1,13 +1,10 @@
-# The ArgoCD Application project
-project: default
-
 # The ArgoCD Application sync wave
 syncWave: 5
 
 # The ArgoCD Application spec.source hash map
 source:
   repoURL: https://github.com/nccurry/openshift-helm-charts.git
-  path: argocd-app-of-apps
+  path: argocd-apps
   targetRevision: HEAD
   helm:
     valueFiles:
@@ -16,13 +13,13 @@ source:
 
 # The ArgoCD Application spec.destination hash map
 destination:
-  namespace: argocd-app-of-apps
+  namespace: openshift-gitops
   server: https://kubernetes.default.svc
 
 # The ArgoCD Application spec.syncPolicy hash map
 syncPolicy:
   automated:
-    prune: true
+    prune: false
     selfHeal: true
   retry:
     backoff:

@@ -1,6 +1,5 @@
----
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: AppProject
 metadata:
   name: {{ .Chart.Name }}
   annotations:
@@ -15,11 +14,21 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/created-by: helm
 spec:
-  project: {{ .Chart.Name }}
-  source:
-    {{- toYaml .Values.source | nindent 4 }}
-  destination:
-    {{- toYaml .Values.destination | nindent 4 }}
-  syncPolicy:
-    {{- toYaml .Values.syncPolicy | nindent 4 }}
-...
+  clusterResourceBlacklist:
+  - group: '*'
+    kind: '*'
+  clusterResourceWhitelist: []
+  description: The AppProject for the ArgoCD parent app-of-apps Application
+  destinations:
+  - namespace: {{ .Values.destination.namespace }}
+    server: {{ .Values.destination.server }}
+  namespaceResourceBlacklist: []
+  namespaceResourceWhitelist:
+  - group: 'argoproj.io'
+    kind: 'Application'
+  orphanedResources: {}
+  roles: []
+  signatureKeys: []
+  sourceRepos:
+  - {{ .Values.source.repoURL }}
+  syncWindows: []
