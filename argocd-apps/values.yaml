@@ -183,7 +183,7 @@ openshift_example_app:
     - CreateNamespace=true
 
 openshift_image_registry:
-  deploy: false
+  deploy: true
   cascadeDelete: false
   namespace: openshift-gitops
   syncWave: 5
