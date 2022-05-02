@@ -1,0 +1,37 @@
+# The namespace to deploy the ArgoCD Application into
+applcationNamespace: openshift-gitops
+
+# The ArgoCD Application project
+project: default
+
+# The ArgoCD Application sync wave
+syncWave: 5
+
+# The ArgoCD Application spec.source hash map
+source:
+  repoURL: https://github.com/nccurry/openshift-helm-charts.git
+  path: argocd-app-of-apps
+  targetRevision: HEAD
+  helm:
+    valueFiles:
+    - values.yaml
+    parameters: []
+
+# The ArgoCD Application spec.destination hash map
+destination:
+  namespace: argocd-app-of-apps
+  server: https://kubernetes.default.svc
+
+# The ArgoCD Application spec.syncPolicy hash map
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+  retry:
+    backoff:
+      duration: 10s
+      factor: 2
+      maxDuration: 12h
+    limit: 10
+  syncOptions:
+  - CreateNamespace=true

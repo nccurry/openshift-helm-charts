@@ -1,0 +1,27 @@
+{{- range $key, $value := .Values }}
+{{- if $value.deploy }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $key | replace "_" "-" }}
+  namespace: {{ $value.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ $value.syncWave }}
+  {{- if $value.cascadeDelete }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  {{- end }}
+spec:
+  project: {{ $value.project }}
+  source:
+    {{- toYaml $value.source | nindent 4 }}
+  destination:
+    {{- toYaml $value.destination | nindent 4 }}
+  syncPolicy:
+    {{- toYaml $value.syncPolicy | nindent 4 }}
+...
+{{- end }}
+{{- end }}
+
+

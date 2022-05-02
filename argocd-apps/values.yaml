@@ -1,0 +1,304 @@
+automatic_operator_approval:
+  deploy: false
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: automatic-operator-approval
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: automatic-operator-approval
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+disable_openshift_samples_operator:
+  deploy: false
+  cascadeDelete: false
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: disable-openshift-samples-operator
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: disable-openshift-samples-operator
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+
+etcd_backup_cronjob:
+  deploy: false
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: etcd-backup-cronjob
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: etcd-backup-cronjob
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+oauth_token_timeout:
+  deploy: false
+  cascadeDelete: false
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: oauth-token-timeout
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: oauth-token-timeout
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+openshift_default_project_template:
+  deploy: false
+  cascadeDelete: false
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: openshift-default-project-template
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: openshift-default-project-template
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+openshift_example_app:
+  deploy: true
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: openshift-example-app
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters:
+      - name: wwwPvcSize
+        value: 4Gi
+      - name: logPvcSize
+        value: 4Gi
+  destination:
+    namespace: openshift-example-app
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+openshift_image_registry:
+  deploy: false
+  cascadeDelete: false
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: openshift-image-registry
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: openshift-image-registry
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+openshift_monitoring:
+  deploy: false
+  cascadeDelete: false
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: openshift-image-registry
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: openshift-image-registry
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+openshift_pipelines_operator:
+  deploy: true
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: openshift-pipelines-operator
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: openshift-pipelines-operator
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true
+
+swiss_army_knife_image:
+  deploy: false
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: swiss-army-knife-image
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+      parameters: []
+  destination:
+    namespace: swiss-army-knife-image
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 12h
+      limit: 10
+    syncOptions:
+    - CreateNamespace=true

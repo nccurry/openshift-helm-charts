@@ -19,3 +19,6 @@ spec:
   tolerations:
     {{- toYaml .Values.tolerations | trim | nindent 2 }}
   {{- end }}
+  storage:
+    pvc:
+      claim:
