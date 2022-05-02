@@ -8,7 +8,7 @@ source:
   targetRevision: HEAD
   helm:
     valueFiles:
-    - values.yaml
+    - alternate-values.yaml
     parameters: []
 # You can override individual applications values via:
 #    - name: "swiss_army_knife_image.deploy"
@@ -32,3 +32,11 @@ syncPolicy:
     limit: 10
   syncOptions:
   - CreateNamespace=true
+
+# Grant openshift-gitops-argocd-application-controller cluster-admin
+clusterAdminClusterRoleBinding: false
+
+# Grant individual namespace rolebindings
+adminRoleBindingNamespaceList:
+- openshift-example-app
+- swiss-army-knife-image
