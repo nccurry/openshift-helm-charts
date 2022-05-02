@@ -22,6 +22,6 @@ tolerations: []
 
 # Configuration of the PersistentVolumeClaim object to use for the registry
 persistentVolumeClaim:
-  deploy: false
+  deploy: true
   size: 100Gi
   storageClassName: thin
