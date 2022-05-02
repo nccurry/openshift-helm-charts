@@ -58,7 +58,6 @@ disable_openshift_samples_operator:
     syncOptions:
     - CreateNamespace=true
 
-
 etcd_backup_cronjob:
   deploy: false
   cascadeDelete: true

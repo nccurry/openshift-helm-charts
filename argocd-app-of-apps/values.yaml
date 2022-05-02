@@ -10,6 +10,9 @@ source:
     valueFiles:
     - values.yaml
     parameters: []
+# You can override individual applications values via:
+#    - name: "swiss_army_knife_image.deploy"
+#      value: "true"
 
 # The ArgoCD Application spec.destination hash map
 destination:
