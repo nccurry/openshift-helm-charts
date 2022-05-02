@@ -192,10 +192,6 @@ openshift_image_registry:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
     path: openshift-image-registry
     targetRevision: HEAD
-    helm:
-      valueFiles:
-      - values.yaml
-      parameters: []
   destination:
     namespace: openshift-image-registry
     server: https://kubernetes.default.svc
