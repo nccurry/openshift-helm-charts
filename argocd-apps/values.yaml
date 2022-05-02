@@ -269,7 +269,7 @@ openshift_pipelines_operator:
     - CreateNamespace=true
 
 swiss_army_knife_image:
-  deploy: false
+  deploy: true
   cascadeDelete: true
   namespace: openshift-gitops
   syncWave: 5
