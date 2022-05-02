@@ -4,7 +4,6 @@ metadata:
   name: cluster
 spec:
   defaultRoute: {{ .Values.defaultRoute }}
-  logLevel: {{ .Values.logLevel }}
   managementState: {{ .Values.managementState }}
   {{- if .Values.nodeSelector }}
   nodeSelector:

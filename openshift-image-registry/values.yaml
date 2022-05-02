@@ -8,11 +8,11 @@ managementState: Managed
 replicas: 1
 
 # nodeSelector defines the node selection constraints for the registry pod.
-nodeSelector:
+nodeSelector: {}
 #  node-role.kubernetes.io/infra: ""
 
 # tolerations defines the tolerations for the registry pod.
-tolerations:
+tolerations: []
 #- key: infra
 #  value: reserved
 #  effect: NoSchedule

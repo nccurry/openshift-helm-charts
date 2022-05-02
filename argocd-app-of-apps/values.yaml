@@ -8,7 +8,7 @@ source:
   targetRevision: HEAD
   helm:
     valueFiles:
-    - alternate-values.yaml
+    - values.yaml
     parameters: []
 # You can override individual applications values via:
 #    - name: "swiss_army_knife_image.deploy"
