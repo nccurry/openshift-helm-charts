@@ -1,9 +1,17 @@
+# defaultRoute indicates whether an external facing route for the registry should be created using the default generated hostname.
 defaultRoute: true
-logLevel: Normal
+
+# managementState indicates whether and how the operator should manage the component
 managementState: Managed
-replicaCount: 1
+
+# replicas determines the number of registry instances to run.
+replicas: 1
+
+# nodeSelector defines the node selection constraints for the registry pod.
 nodeSelector: {}
 #  node-role.kubernetes.io/infra: ""
+
+# tolerations defines the tolerations for the registry pod.
 tolerations: {}
 #  - key: infra
 #    value: reserved
@@ -11,3 +19,9 @@ tolerations: {}
 #  - key: infra
 #    value: reserved
 #    effect: NoExecute
+
+# Configuration of the PersistentVolumeClaim object to use for the registry
+persistentVolumeClaim:
+  deploy: false
+  size: 100Gi
+  storageClassName: thin

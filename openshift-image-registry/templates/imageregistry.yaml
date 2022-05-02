@@ -3,22 +3,14 @@ kind: Config
 metadata:
   name: cluster
 spec:
-  {{- if .Values.defaultRoute }}
   defaultRoute: {{ .Values.defaultRoute }}
-  {{- end }}
-  {{- if .Values.logLevel }}
   logLevel: {{ .Values.logLevel }}
-  {{- end }}
   managementState: {{ .Values.managementState }}
-  {{- if .Values.nodeSelector }}
   nodeSelector:
     {{ toYaml .Values.nodeSelector }}
-  {{- end }}
-  replicas: {{ .Values.replicaCount }}
-  {{- if .Values.tolerations }}
+  replicas: {{ .Values.replicas }}
   tolerations:
     {{- toYaml .Values.tolerations | trim | nindent 2 }}
-  {{- end }}
   storage:
     pvc:
-      claim:
+      claim: {{- if .Values.persistentVolumeClaim.deploy -}}image-registry-storage{{- end }}
