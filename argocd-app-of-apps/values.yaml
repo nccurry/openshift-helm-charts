@@ -1,6 +1,3 @@
-# The namespace to deploy the ArgoCD Application into
-applcationNamespace: openshift-gitops
-
 # The ArgoCD Application project
 project: default
 

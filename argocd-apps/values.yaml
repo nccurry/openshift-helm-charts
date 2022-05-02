@@ -244,7 +244,7 @@ openshift_monitoring:
     - CreateNamespace=true
 
 openshift_pipelines_operator:
-  deploy: true
+  deploy: false
   cascadeDelete: true
   namespace: openshift-gitops
   syncWave: 5

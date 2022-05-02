@@ -3,9 +3,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Chart.Name }}
-  namespace: {{ .Values.applcationNamespace }}
   annotations:
-    argocd.argoproj.io/sync-wave: {{ .Values.syncWave }}
+    argocd.argoproj.io/sync-wave: {{ .Values.syncWave | quote }}
   labels:
     app.kubernetes.io/name: {{ .Chart.Name }}
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
