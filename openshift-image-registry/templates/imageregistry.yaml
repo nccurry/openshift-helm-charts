@@ -6,11 +6,16 @@ spec:
   defaultRoute: {{ .Values.defaultRoute }}
   logLevel: {{ .Values.logLevel }}
   managementState: {{ .Values.managementState }}
+  {{- if .Values.nodeSelector }}
   nodeSelector:
     {{ toYaml .Values.nodeSelector }}
+  {{- end }}
   replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicaCount }}
+  {{- if .Values.tolerations }}
   tolerations:
     {{- toYaml .Values.tolerations | trim | nindent 2 }}
+  {{- end }}
   storage:
     pvc:
       claim: {{- if .Values.persistentVolumeClaim.deploy -}}image-registry-storage{{- end }}

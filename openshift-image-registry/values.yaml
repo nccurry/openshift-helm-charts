@@ -8,17 +8,17 @@ managementState: Managed
 replicas: 1
 
 # nodeSelector defines the node selection constraints for the registry pod.
-nodeSelector: {}
+nodeSelector:
 #  node-role.kubernetes.io/infra: ""
 
 # tolerations defines the tolerations for the registry pod.
-tolerations: {}
-#  - key: infra
-#    value: reserved
-#    effect: NoSchedule
-#  - key: infra
-#    value: reserved
-#    effect: NoExecute
+tolerations:
+#- key: infra
+#  value: reserved
+#  effect: NoSchedule
+#- key: infra
+#  value: reserved
+#  effect: NoExecute
 
 # Configuration of the PersistentVolumeClaim object to use for the registry
 persistentVolumeClaim:
