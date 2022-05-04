@@ -19,12 +19,6 @@ automatic_operator_approval:
     automated:
       prune: true
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 12h
-      limit: 10
     syncOptions:
     - CreateNamespace=true
 
@@ -79,12 +73,6 @@ etcd_backup_cronjob:
     automated:
       prune: true
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 12h
-      limit: 10
     syncOptions:
     - CreateNamespace=true
 
@@ -109,12 +97,6 @@ oauth_token_timeout:
     automated:
       prune: true
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 12h
-      limit: 10
     syncOptions:
     - CreateNamespace=true
 
@@ -139,12 +121,6 @@ openshift_default_project_template:
     automated:
       prune: true
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 12h
-      limit: 10
     syncOptions:
     - CreateNamespace=true
 
@@ -173,12 +149,6 @@ openshift_example_app:
     automated:
       prune: true
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 12h
-      limit: 10
     syncOptions:
     - CreateNamespace=true
 
@@ -199,12 +169,6 @@ openshift_image_registry:
     automated:
       prune: false
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 30m
-      limit: 3
     syncOptions:
     - CreateNamespace=true
 
@@ -229,12 +193,6 @@ openshift_monitoring:
     automated:
       prune: false
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 12h
-      limit: 10
     syncOptions:
     - CreateNamespace=true
 
@@ -259,12 +217,6 @@ openshift_pipelines_operator:
     automated:
       prune: true
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 12h
-      limit: 10
     syncOptions:
     - CreateNamespace=true
 
@@ -289,11 +241,5 @@ swiss_army_knife_image:
     automated:
       prune: false
       selfHeal: true
-    retry:
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 12h
-      limit: 10
     syncOptions:
     - CreateNamespace=true
