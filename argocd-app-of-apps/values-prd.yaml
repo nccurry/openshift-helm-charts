@@ -5,14 +5,10 @@ syncWave: 5
 source:
   repoURL: https://github.com/nccurry/openshift-helm-charts.git
   path: argocd-apps
-  targetRevision: HEAD
+  targetRevision: v1.0.0
   helm:
     valueFiles:
-    - values.yaml
-    parameters: []
-# You can override individual applications values via:
-#    - name: "swiss_army_knife_image.deploy"
-#      value: "true"
+    - values-prd.yaml
 
 # The ArgoCD Application spec.destination hash map
 destination:
@@ -24,12 +20,6 @@ syncPolicy:
   automated:
     prune: false
     selfHeal: true
-  retry:
-    backoff:
-      duration: 10s
-      factor: 2
-      maxDuration: 12h
-    limit: 10
   syncOptions:
   - CreateNamespace=true
 
