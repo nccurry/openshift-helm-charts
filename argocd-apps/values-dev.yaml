@@ -172,14 +172,14 @@ openshift_monitoring:
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
-    path: openshift-image-registry
+    path: openshift-monitoring
     targetRevision: HEAD
     helm:
       valueFiles:
       - values.yaml
       parameters: []
   destination:
-    namespace: openshift-image-registry
+    namespace: openshift-monitoring
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
