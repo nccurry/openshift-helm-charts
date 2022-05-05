@@ -1,3 +1,4 @@
+---
 # The ArgoCD Application sync wave
 syncWave: 5
 
@@ -25,3 +26,4 @@ syncPolicy:
 
 # Grant openshift-gitops-argocd-application-controller cluster-admin
 clusterAdminClusterRoleBinding: true
+...

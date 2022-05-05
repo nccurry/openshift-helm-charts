@@ -1,3 +1,4 @@
+---
 # defaultRoute indicates whether an external facing route for the registry should be created using the default generated hostname.
 defaultRoute: true
 
@@ -24,3 +25,4 @@ tolerations: []
 persistentVolumeClaim:
   size: 100Gi
   storageClassName: thin
+...

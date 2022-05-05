@@ -1,3 +1,4 @@
+---
 #automatic_operator_approval:
 #  cascadeDelete: true
 #  namespace: openshift-gitops
@@ -233,3 +234,4 @@ swiss_army_knife_image:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
+...

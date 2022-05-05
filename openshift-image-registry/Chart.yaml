@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: openshift-image-registry
 version: 1.0.0
@@ -19,3 +20,4 @@ icon: https://helm.sh/img/helm.svg
 appVersion: "1.0.0"
 deprecated: false
 annotations: {}
+...

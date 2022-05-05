@@ -1,3 +1,5 @@
+---
 storageClassName: thin
 pvcSize: 50Gi
 schedule: '5 0 * * *'
+...

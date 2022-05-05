@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: openshift-default-project-template
 version: 1.0.0
@@ -23,3 +24,4 @@ icon: https://helm.sh/img/helm.svg
 appVersion: "1.0.0"
 deprecated: false
 annotations: {}
+...

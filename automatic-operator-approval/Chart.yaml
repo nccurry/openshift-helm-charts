@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: automatic-operator-approval
 version: 1.0.0
@@ -18,3 +19,4 @@ icon: https://helm.sh/img/helm.svg
 appVersion: "1.0.0"
 deprecated: false
 annotations: {}
+...
