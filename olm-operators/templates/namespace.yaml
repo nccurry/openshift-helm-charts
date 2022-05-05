@@ -1,0 +1,10 @@
+{{- range $key, $value := .Values }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  name: "{{ $value.namespace }}"
+...
+{{- end }}
