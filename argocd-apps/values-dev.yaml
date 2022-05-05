@@ -97,28 +97,27 @@
 #    syncOptions:
 #    - CreateNamespace=true
 
-#openshift_default_project_template:
-#  cascadeDelete: false
-#  namespace: openshift-gitops
-#  syncWave: 5
-#  project: default
-#  source:
-#    repoURL: https://github.com/nccurry/openshift-helm-charts.git
-#    path: openshift-default-project-template
-#    targetRevision: HEAD
-#    helm:
-#      valueFiles:
-#      - values.yaml
-#      parameters: []
-#  destination:
-#    namespace: openshift-default-project-template
-#    server: https://kubernetes.default.svc
-#  syncPolicy:
-#    automated:
-#      prune: true
-#      selfHeal: true
-#    syncOptions:
-#    - CreateNamespace=true
+openshift_default_project_template:
+  cascadeDelete: false
+  namespace: openshift-gitops
+  syncWave: 5
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: openshift-default-project-template
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+  destination:
+    namespace: openshift-default-project-template
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
 
 openshift_example_app:
   cascadeDelete: true

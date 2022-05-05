@@ -7,11 +7,8 @@ description: A Helm chart to configure the default project template
 type: application
 keywords:
 - openshift
-- pipelines
-- olm
-- operator
-- tekton
-- openshift-pipelines
+- project
+- template
 home: https://github.com/nccurry/openshift-helm-charts
 sources:
 - https://github.com/nccurry/openshift-helm-charts

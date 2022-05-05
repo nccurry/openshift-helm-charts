@@ -19,7 +19,6 @@ objects:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
-    creationTimestamp: null
     name: admin
     namespace: ${PROJECT_NAME}
   roleRef:
