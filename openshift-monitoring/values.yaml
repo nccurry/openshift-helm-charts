@@ -1,3 +1,5 @@
+enableUserWorkload: false
+
 alertmanager:
   storageClassName: thin
   storage: 3Gi
