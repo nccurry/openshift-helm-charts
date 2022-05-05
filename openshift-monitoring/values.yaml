@@ -10,7 +10,7 @@ prometheusK8s:
 nodeSelector: {}
 #  node-role.kubernetes.io/infra: ""
 
-tolerations: {}
+tolerations: []
 #- key: infra
 #  value: reserved
 #  effect: NoExecute
