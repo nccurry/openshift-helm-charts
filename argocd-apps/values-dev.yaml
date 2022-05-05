@@ -2,7 +2,7 @@
 #automatic_operator_approval:
 #  cascadeDelete: true
 #  namespace: openshift-gitops
-#  syncWave: 5
+#  syncWave: 20
 #  project: default
 #  source:
 #    repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -25,7 +25,7 @@
 #  deploy: false
 #  cascadeDelete: false
 #  namespace: openshift-gitops
-#  syncWave: 5
+#  syncWave: 20
 #  project: default
 #  source:
 #    repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -54,7 +54,7 @@
 #etcd_backup_cronjob:
 #  cascadeDelete: true
 #  namespace: openshift-gitops
-#  syncWave: 5
+#  syncWave: 20
 #  project: default
 #  source:
 #    repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -77,7 +77,7 @@
 #oauth_token_timeout:
 #  cascadeDelete: false
 #  namespace: openshift-gitops
-#  syncWave: 5
+#  syncWave: 20
 #  project: default
 #  source:
 #    repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -97,10 +97,29 @@
 #    syncOptions:
 #    - CreateNamespace=true
 
+olm_operators:
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 10
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: olm-operators
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
 openshift_default_project_template:
   cascadeDelete: false
   namespace: openshift-gitops
-  syncWave: 5
+  syncWave: 20
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -122,7 +141,7 @@ openshift_default_project_template:
 openshift_example_app:
   cascadeDelete: true
   namespace: openshift-gitops
-  syncWave: 5
+  syncWave: 20
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -149,7 +168,7 @@ openshift_example_app:
 openshift_image_registry:
   cascadeDelete: false
   namespace: openshift-gitops
-  syncWave: 5
+  syncWave: 20
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -168,7 +187,7 @@ openshift_image_registry:
 openshift_monitoring:
   cascadeDelete: false
   namespace: openshift-gitops
-  syncWave: 5
+  syncWave: 20
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -191,7 +210,7 @@ openshift_monitoring:
 #openshift_pipelines_operator:
 #  cascadeDelete: true
 #  namespace: openshift-gitops
-#  syncWave: 5
+#  syncWave: 20
 #  project: default
 #  source:
 #    repoURL: https://github.com/nccurry/openshift-helm-charts.git
@@ -214,7 +233,7 @@ openshift_monitoring:
 swiss_army_knife_image:
   cascadeDelete: true
   namespace: openshift-gitops
-  syncWave: 5
+  syncWave: 20
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
