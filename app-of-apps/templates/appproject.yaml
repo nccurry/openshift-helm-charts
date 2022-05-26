@@ -1,0 +1,34 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/instance: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    app.kubernetes.io/component: configuration
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/created-by: helm
+spec:
+  clusterResourceBlacklist:
+  - group: '*'
+    kind: '*'
+  clusterResourceWhitelist: []
+  description: The AppProject for the ArgoCD parent app-of-apps Application
+  destinations:
+  - namespace: {{ .Values.destination.namespace }}
+    server: {{ .Values.destination.server }}
+  namespaceResourceBlacklist: []
+  namespaceResourceWhitelist:
+  - group: 'argoproj.io'
+    kind: 'Application'
+  orphanedResources: {}
+  roles: []
+  signatureKeys: []
+  sourceRepos:
+  - {{ .Values.source.repoURL }}
+  syncWindows: []
+...

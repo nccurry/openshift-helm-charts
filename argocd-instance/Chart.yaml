@@ -1,0 +1,22 @@
+---
+apiVersion: v2
+name: argocd-instance
+version: 1.0.0
+description: A single instance of ArgoCD
+type: application
+keywords:
+- openshift
+- argocd
+home: https://github.com/nccurry/openshift-helm-charts
+sources:
+- https://github.com/nccurry/openshift-helm-charts
+dependencies: []
+maintainers:
+- name: Nick Curry
+  email: code@nickcurry.com
+  url: https://nickcurry.com
+icon: https://helm.sh/img/helm.svg
+appVersion: "1.0.0"
+deprecated: false
+annotations: {}
+...

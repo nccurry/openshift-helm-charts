@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: automatic-operator-approval
-data:
-  automatic_operator_approval.py: |-
-{{ .Files.Get "automatic_operator_approval.py" | indent 4 }}

@@ -1,0 +1,32 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: automatic-operator-approval
+  labels:
+    template: automatic-operator-approval
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: {{ .Values.failed_jobs_history_limit }}
+  successfulJobsHistoryLimit: {{ .Values.success_jobs_history_limit }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: {{ .Values.image }}
+            command:
+            - /scripts/automatic_operator_approval.py
+            imagePullPolicy: Always
+            name: automatic-operator-approval
+            volumeMounts:
+            - name: python-script
+              mountPath: /scripts
+          volumes:
+          - name: python-script
+            configMap:
+              name: automatic-operator-approval
+              defaultMode: 0774
+          restartPolicy: OnFailure
+          serviceAccountName: automatic-operator-approval
+          terminationGracePeriodSeconds: 30
