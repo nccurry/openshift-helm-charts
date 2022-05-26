@@ -6,7 +6,7 @@ olm_operators:
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
-    path: olm-operators
+    path: application-charts/olm-operators
     targetRevision: HEAD
     helm:
       valueFiles:
@@ -25,7 +25,7 @@ openshift_example_app:
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
-    path: openshift-example-app
+    path: application-charts/openshift-example-app
     targetRevision: HEAD
   destination:
     namespace: openshift-example-app
@@ -42,7 +42,7 @@ openshift_image_registry:
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
-    path: openshift-image-registry
+    path: application-charts/openshift-image-registry
     targetRevision: HEAD
   destination:
     namespace: openshift-image-registry
@@ -61,7 +61,7 @@ swiss_army_knife_image:
   project: default
   source:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
-    path: swiss-army-knife-image
+    path: application-charts/swiss-army-knife-image
     targetRevision: HEAD
   destination:
     namespace: swiss-army-knife-image
