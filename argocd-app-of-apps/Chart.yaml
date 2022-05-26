@@ -2,7 +2,6 @@
 apiVersion: v2
 name: argocd-app-of-apps
 version: 1.0.0
-kubeVersion: ">= 1.13.0"
 description: An example chart for ArgoCD app of apps pattern
 type: application
 keywords:
