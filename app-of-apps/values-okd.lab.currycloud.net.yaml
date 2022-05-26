@@ -1,31 +1,13 @@
 ---
-# The ArgoCD Application sync wave
-syncWave: 5
-
 # The ArgoCD Application spec.source hash map
 source:
   repoURL: https://github.com/nccurry/openshift-helm-charts.git
-  path: argocd-apps
+  path: application-charts/argocd-apps
   targetRevision: HEAD
   helm:
     valueFiles:
     - values-okd.lab.currycloud.net.yaml
 
-# The ArgoCD Application spec.destination hash map
-destination:
-  namespace: argocd
-  server: https://kubernetes.default.svc
-
-# The ArgoCD Application spec.syncPolicy hash map
-syncPolicy:
-  automated:
-    prune: true
-    selfHeal: true
-  syncOptions:
-  - CreateNamespace=true
-
 # Grant openshift-gitops-argocd-application-controller cluster-admin
 clusterAdminClusterRoleBinding: true
-clusterAdminServiceAccountName: argocd-argocd-application-controller
-clusterAdminServiceAccountNamespace: argocd
 ...

@@ -19,8 +19,8 @@ spec:
   clusterResourceWhitelist: []
   description: The AppProject for the ArgoCD parent app-of-apps Application
   destinations:
-  - namespace: {{ .Values.destination.namespace }}
-    server: {{ .Values.destination.server }}
+  - namespace: {{ .Release.Namespace }}
+    server: https://kubernetes.default.svc
   namespaceResourceBlacklist: []
   namespaceResourceWhitelist:
   - group: 'argoproj.io'

@@ -15,8 +15,8 @@ metadata:
     app.kubernetes.io/created-by: helm
 subjects:
   - kind: ServiceAccount
-    name: {{ .Values.clusterAdminServiceAccountName }}
-    namespace: {{ .Values.clusterAdminServiceAccountNamespace }}
+    name: argocd-argocd-application-controller
+    namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
