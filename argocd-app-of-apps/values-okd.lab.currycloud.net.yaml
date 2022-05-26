@@ -13,7 +13,7 @@ source:
 
 # The ArgoCD Application spec.destination hash map
 destination:
-  namespace: openshift-gitops
+  namespace: argocd
   server: https://kubernetes.default.svc
 
 # The ArgoCD Application spec.syncPolicy hash map
