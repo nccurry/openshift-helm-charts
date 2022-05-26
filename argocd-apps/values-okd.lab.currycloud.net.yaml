@@ -34,8 +34,6 @@ openshift_example_app:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
 
 openshift_image_registry:
   cascadeDelete: false

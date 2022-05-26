@@ -6,19 +6,15 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: {{ .Chart.Name }}
-    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.AppVersion }}
-    app.kubernetes.io/component: storage
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-    app.kubernetes.io/created-by: helm
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.wwwPvcSize }}
+...
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -27,13 +23,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: {{ .Chart.Name }}
-    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.AppVersion }}
-    app.kubernetes.io/component: configuration
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-    app.kubernetes.io/created-by: helm
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   accessModes:
   - ReadWriteOnce
