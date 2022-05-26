@@ -1,0 +1,15 @@
+---
+crunchy_postgres:
+  namespace: crunchy-postgres
+  operatorGroup:
+    spec:
+  subscription:
+    name: postgresql
+    spec:
+      channel: v5
+      installPlanApproval: Automatic
+      name: postgresql
+      source: community-operators
+      sourceNamespace: openshift-marketplace
+      startingCSV: postgresoperator.v5.1.0
+...

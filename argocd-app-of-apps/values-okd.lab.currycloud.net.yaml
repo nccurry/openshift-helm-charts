@@ -9,7 +9,7 @@ source:
   targetRevision: HEAD
   helm:
     valueFiles:
-    - values-dev.yaml
+    - values-okd.lab.currycloud.net.yaml
 
 # The ArgoCD Application spec.destination hash map
 destination:
@@ -19,11 +19,11 @@ destination:
 # The ArgoCD Application spec.syncPolicy hash map
 syncPolicy:
   automated:
-    prune: false
+    prune: true
     selfHeal: true
   syncOptions:
   - CreateNamespace=true
 
 # Grant openshift-gitops-argocd-application-controller cluster-admin
-clusterAdminClusterRoleBinding: true
+clusterAdminClusterRoleBinding: false
 ...

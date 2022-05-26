@@ -1,0 +1,77 @@
+---
+olm_operators:
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 10
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: olm-operators
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values-okd.lab.currycloud.net.yaml
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+openshift_example_app:
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 20
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: openshift-example-app
+    targetRevision: HEAD
+  destination:
+    namespace: openshift-example-app
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+
+openshift_image_registry:
+  cascadeDelete: false
+  namespace: openshift-gitops
+  syncWave: 20
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: openshift-image-registry
+    targetRevision: HEAD
+  destination:
+    namespace: openshift-image-registry
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+
+swiss_army_knife_image:
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 20
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: swiss-army-knife-image
+    targetRevision: HEAD
+  destination:
+    namespace: swiss-army-knife-image
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+...
