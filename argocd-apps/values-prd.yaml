@@ -1,6 +1,5 @@
 ---
 swiss_army_knife_image:
-  deploy: true
   cascadeDelete: true
   namespace: openshift-gitops
   syncWave: 5
@@ -9,9 +8,6 @@ swiss_army_knife_image:
     repoURL: https://github.com/nccurry/openshift-helm-charts.git
     path: swiss-army-knife-image
     targetRevision: HEAD
-    helm:
-      valueFiles:
-      - values.yaml
   destination:
     namespace: swiss-army-knife-image
     server: https://kubernetes.default.svc

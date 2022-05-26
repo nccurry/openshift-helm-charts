@@ -21,5 +21,3 @@ spec:
     {{- toYaml $value.syncPolicy | nindent 4 }}
 ...
 {{- end }}
-
-
