@@ -10,7 +10,7 @@
 #    targetRevision: HEAD
 #    helm:
 #      valueFiles:
-#      - values.yaml
+#      - values-example.yaml
 #  destination:
 #    namespace: automatic-operator-approval
 #    server: https://kubernetes.default.svc
@@ -33,7 +33,7 @@
 #    targetRevision: HEAD
 #    helm:
 #      valueFiles:
-#      - values.yaml
+#      - values-example.yaml
 #      parameters: []
 #  destination:
 #    namespace: disable-openshift-samples-operator
@@ -62,7 +62,7 @@
 #    targetRevision: HEAD
 #    helm:
 #      valueFiles:
-#      - values.yaml
+#      - values-example.yaml
 #      parameters: []
 #  destination:
 #    namespace: etcd-backup-cronjob
@@ -85,7 +85,7 @@
 #    targetRevision: HEAD
 #    helm:
 #      valueFiles:
-#      - values.yaml
+#      - values-example.yaml
 #      parameters: []
 #  destination:
 #    namespace: oauth-token-timeout
@@ -108,7 +108,7 @@ olm_operators:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values.yaml
+      - values-example.yaml
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
@@ -127,7 +127,7 @@ openshift_default_project_template:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values.yaml
+      - values-example.yaml
   destination:
     namespace: openshift-default-project-template
     server: https://kubernetes.default.svc
@@ -149,7 +149,7 @@ openshift_example_app:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values.yaml
+      - values-example.yaml
       parameters:
       - name: wwwPvcSize
         value: 4Gi
@@ -195,7 +195,7 @@ openshift_monitoring:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values.yaml
+      - values-example.yaml
       parameters: []
   destination:
     namespace: openshift-monitoring
@@ -218,7 +218,7 @@ openshift_monitoring:
 #    targetRevision: HEAD
 #    helm:
 #      valueFiles:
-#      - values.yaml
+#      - values-example.yaml
 #      parameters: []
 #  destination:
 #    namespace: openshift-pipelines-operator
@@ -241,7 +241,7 @@ swiss_army_knife_image:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values.yaml
+      - values-example.yaml
       parameters: []
   destination:
     namespace: swiss-army-knife-image
