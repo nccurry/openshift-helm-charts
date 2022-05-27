@@ -5,6 +5,7 @@ metadata:
   name: cluster
 spec:
   defaultRoute: {{ .Values.defaultRoute }}
+  rolloutStrategy: Recreate
   managementState: {{ .Values.managementState }}
   {{- if .Values.nodeSelector }}
   nodeSelector:
