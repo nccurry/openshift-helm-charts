@@ -15,10 +15,10 @@ crunchy_postgres:
 
 gitlab:
   namespace: gitlab-system
-    operatorGroup:
-      spec:
-        targetNamespaces:
-          - gitlab-system
+  operatorGroup:
+    spec:
+      targetNamespaces:
+        - gitlab-system
   subscription:
     name: gitlab-operator-kubernetes
     spec:
