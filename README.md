@@ -1,14 +1,30 @@
+# OKD / OpenShift ArgoCD
 
 ## Deploy
 
-### Install the ArgoCD community operator
+### Set environment
 ```shell
-helm install argocd-operator ./argocd-operator --namespace argocd-operator --create-namespace --wait
+K8S_ENVIRONMENT=environment
 ```
 
-### Deploy an ArgoCD instance
+### Install the ArgoCD community operator or the OpenShift GitOps operator
 ```shell
-helm install argocd ./argocd-instance --namespace argocd --create-namespace --wait -f ./argocd-instance/values-<environment>.yaml
+# ArgoCD
+helm install argocd-operator ./argocd-operator --namespace argocd-operator --create-namespace --wait
+
+# OpenShift GitOps
+helm install openshift-gitops-operator ./openshift-gitops-operator --namespace openshift-gitops-operator --create-namespace --wait
+
+```
+
+### Deploy an ArgoCD instance (not needed with the openshift-gitops operator)
+```shell
+helm install argocd ./argocd-instance --namespace openshift-gitops --create-namespace --wait -f ./argocd-instance/values-${K8S_ENVIRONMENT}.yaml
+```
+
+### Deploy the app-of-apps chart
+```shell
+helm install argocd ./app-of-apps --namespace openshift-gitops --wait -f ./app-of-apps/values-${K8S_ENVIRONMENT}.yaml
 ```
 
 ## Teardown
