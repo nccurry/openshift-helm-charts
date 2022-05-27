@@ -7,7 +7,4 @@ source:
   helm:
     valueFiles:
     - values-okd.lab.currycloud.net.yaml
-
-# Grant openshift-gitops-argocd-application-controller cluster-admin
-clusterAdminClusterRoleBinding: true
 ...

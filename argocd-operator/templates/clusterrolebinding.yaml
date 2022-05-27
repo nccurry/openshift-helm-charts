@@ -1,8 +1,8 @@
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ .Values.clusterAdminServiceAccountName }}-cluster-admin
   labels:
     app.kubernetes.io/name: {{ .Chart.Name }}
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
@@ -12,17 +12,12 @@ metadata:
     app.kubernetes.io/part-of: {{ .Chart.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/created-by: helm
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  project: {{ .Chart.Name }}
-  source:
-    {{- toYaml .Values.source | nindent 4 }}
-  destination:
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Release.Namespace }}-argocd-application-controller
     namespace: {{ .Release.Namespace }}
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
 ...

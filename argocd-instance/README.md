@@ -3,5 +3,6 @@
 An example of the ArgoCD App of Apps pattern
 
 ```shell
-helm install argocd-instance ./ --namespace argocd --create-namespace --wait -f values-example.yaml
+K8S_ENVIRONMENT=environment
+helm install argocd-instance ./ --namespace openshift-gitops --create-namespace --wait -f values-${K8S_ENVIRONMENT}.yaml
 ```

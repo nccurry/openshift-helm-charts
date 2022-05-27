@@ -1,8 +1,7 @@
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
 metadata:
-  name: default
   labels:
     app.kubernetes.io/name: {{ .Chart.Name }}
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
@@ -12,23 +11,6 @@ metadata:
     app.kubernetes.io/part-of: {{ .Chart.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/created-by: helm
-spec:
-  clusterResourceBlacklist: []
-  clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  description: The default AppProject for ArgoCD
-  destinations:
-  - namespace: '*'
-    server: https://kubernetes.default.svc
-  namespaceResourceBlacklist: []
-  namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  orphanedResources: {}
-  roles: []
-  signatureKeys: []
-  sourceRepos:
-  - '*'
-  syncWindows: []
+  name: global-operators
+  namespace: {{ .Release.Namespace }}
 ...
