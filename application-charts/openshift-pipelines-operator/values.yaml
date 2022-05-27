@@ -1,3 +1,0 @@
----
-namespace: openshift-pipelines-operator
-startingCsv: openshift-pipelines-operator-rh.v1.6.2
