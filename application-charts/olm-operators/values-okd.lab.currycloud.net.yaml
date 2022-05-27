@@ -12,4 +12,20 @@ crunchy_postgres:
       source: community-operators
       sourceNamespace: openshift-marketplace
       startingCSV: postgresoperator.v5.1.0
+
+gitlab:
+  namespace: gitlab-system
+    operatorGroup:
+      spec:
+        targetNamespaces:
+          - gitlab-system
+  subscription:
+    name: gitlab-operator-kubernetes
+    spec:
+      channel: stable
+      installPlanApproval: Automatic
+      name: gitlab-operator-kubernetes
+      source: community-operators
+      sourceNamespace: openshift-marketplace
+      startingCSV: gitlab-operator-kubernetes.v0.6.1
 ...
