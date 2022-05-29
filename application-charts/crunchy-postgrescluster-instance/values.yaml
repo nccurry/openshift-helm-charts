@@ -1,3 +1,7 @@
 ---
-
+postgresVersion: 14
+postgresStorage: 1Gi
+backupStorage: 1Gi
+useNodePort: true
+postgresReplicas: 2
 ...

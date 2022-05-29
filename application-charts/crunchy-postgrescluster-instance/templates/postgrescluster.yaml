@@ -3,8 +3,10 @@ kind: PostgresCluster
 metadata:
   name: postgres
 spec:
+  {{- if .Values.useNodePort }}
   service:
     type: NodePort
+  {{- end }}
   instances:
     - name: instance1
       dataVolumeClaimSpec:
@@ -12,8 +14,8 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 1Gi
-      replicas: 1
+            storage: {{ .Values.postgresStorage }}
+      replicas: {{ .Values.postgresReplicas }}
   backups:
     pgbackrest:
       repos:
@@ -24,5 +26,13 @@ spec:
             - "ReadWriteOnce"
             resources:
               requests:
-                storage: 1Gi
-  postgresVersion: 14
+                storage: {{ .Values.backupStorage }}
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        parameters:
+          max_parallel_workers: 2
+          max_worker_processes: 2
+          shared_buffers: 1GB
+          work_mem: 2MB
+  postgresVersion: {{ .Values.postgresVersion }}
