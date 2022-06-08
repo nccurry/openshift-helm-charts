@@ -1,20 +1,24 @@
 ---
-#openshift_example_app:
-#  cascadeDelete: false
-#  namespace: openshift-gitops
-#  syncWave: 20
-#  project: default
-#  source:
-#    repoURL: https://github.com/nccurry/openshift-helm-charts.git
-#    path: application-charts/openshift-example-app
-#    targetRevision: HEAD
-#  destination:
-#    namespace: openshift-example-app
-#    server: https://kubernetes.default.svc
-#  syncPolicy:
-#    automated:
-#      prune: false
-#      selfHeal: false
+openshift_example_app:
+  cascadeDelete: false
+  namespace: openshift-gitops
+  syncWave: 20
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: application-charts/openshift-example-app
+    targetRevision: HEAD
+    helm:
+      parameters:
+      - name: logPvcSize
+        value: 2Gi
+  destination:
+    namespace: openshift-example-app
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
 #
 #swiss_army_knife_image:
 #  cascadeDelete: true
