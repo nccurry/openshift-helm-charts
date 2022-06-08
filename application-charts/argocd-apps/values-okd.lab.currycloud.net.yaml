@@ -1,6 +1,6 @@
 ---
 olm_operators:
-  cascadeDelete: true
+  cascadeDelete: false
   namespace: openshift-gitops
   syncWave: 10
   project: default
