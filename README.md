@@ -14,7 +14,6 @@ helm install argocd-operator ./argocd-operator --namespace argocd-operator --cre
 
 # OpenShift GitOps
 helm install openshift-gitops-operator ./openshift-gitops-operator --namespace openshift-gitops-operator --create-namespace --wait
-
 ```
 
 ### Deploy an ArgoCD instance (not needed with the openshift-gitops operator)
@@ -32,11 +31,18 @@ helm install argocd ./app-of-apps --namespace openshift-gitops --wait -f ./app-o
 ## Remove the ArgoCD instance
 ```shell 
 helm uninstall argocd --namespace argocd --wait
-oc delete namespace argocd
+oc delete namespace openshift-gitops
 ```
 
 ## Remove the ArgoCD community operator
 ```shell 
 helm uninstall argocd-operator --namespace argocd-operator --wait
 oc delete namespace argocd-operator
+```
+
+## Remove the OpenShift GitOps operator
+```shell 
+helm uninstall openshift-gitops-operator --namespace openshift-gitops-operator --wait
+oc delete namespace openshift-gitops-operator
+oc delete namespace openshift-gitops
 ```

@@ -1,0 +1,10 @@
+---
+# The ArgoCD Application spec.source hash map
+source:
+  repoURL: https://github.com/nccurry/openshift-helm-charts.git
+  path: application-charts/argocd-apps
+  targetRevision: HEAD
+  helm:
+    valueFiles:
+    - values-ocp.lab.currycloud.net.yaml
+...

@@ -1,0 +1,37 @@
+---
+olm_operators:
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 10
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: application-charts/olm-operators
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - values-ocp.lab.currycloud.net.yaml
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+
+openshift_example_app:
+  cascadeDelete: true
+  namespace: openshift-gitops
+  syncWave: 20
+  project: default
+  source:
+    repoURL: https://github.com/nccurry/openshift-helm-charts.git
+    path: application-charts/openshift-example-app
+    targetRevision: HEAD
+  destination:
+    namespace: openshift-example-app
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+...
